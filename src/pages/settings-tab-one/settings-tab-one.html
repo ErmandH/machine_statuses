@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <ion-row>
+                <ion-col col-1>
+                    <ion-buttons slot="start" start>
+                        <button ion-button icon-only color="light" shape="round" (click)="goBack($event);">
+                            <ion-icon name="arrow-back"  style="font-size: 2em;"></ion-icon>
+                          </button>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col col-11>
+                    <div>
+                        <ion-segment mode="ios" value="t1">
+                            <ion-segment-button id="selectedSegment" (click)="goToTabOne()" value="t1" color="light" shape="round">
+                                {{'setting-tabs.general' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button (click)="goToTabTwo()" value="t2" color="light" shape="round">
+                                {{'setting-tabs.general-fertilizer' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button (click)="goToTabThree()" value="t3" color="light" shape="round">
+                                {{'setting-tabs.row-enable-disable' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button (click)="goToTabFour()" value="t4" color="light" shape="round">
+                                {{'setting-tabs.granular-motor' | translate}}
+                            </ion-segment-button>
+                        </ion-segment>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+<ion-content padding id="settings">
+    <ion-grid style="height: 100%!important;"> 
+                <ion-row class="full-height">
+                    <ion-col col-8 class="full-height">
+                        <ion-content class="bg-app-primary no-padding">
+                            <settings-general 
+                            [focusDistanceBetweenSeeds]="focusDistanceBetweenSeeds"
+                            [focusFertilizerWeight]="focusFertilizerWeight"
+                            [focusDistanceBetweenUnits]="focusDistanceBetweenUnits"
+                            >
+                        </settings-general>
+                        </ion-content>
+                        
+                    </ion-col>
+                    <ion-col slot="fixed" style="position: relative;" col-4 class="general-settings-col">
+                        <div class="general-settings-buttons">
+                            <button slot="fixed" ion-button (click)="openSeedCalibrationModal()" color="light" round>
+                                <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.seed-calibration' | translate}}
+                              </button>
+                            <button slot="fixed" ion-button (click)="openCalibrationModal()" color="light" round>
+                                <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                              </button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+    </ion-grid>
+</ion-content>
+
+
+<ion-footer>
+  <div class="flex justify-center align-center" style="padding: 0.8rem;">
+      <button (click)="submitGeneralSettings()" [disabled]="isButtonDisabled" ion-button round color="light" type="submit">
+          {{'settings.general.save' | translate}}
+      </button>
+  </div>
+</ion-footer> 

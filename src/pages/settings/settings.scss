@@ -1,0 +1,55 @@
+page-settings {
+    #settings {
+        background: color($colors, primary);
+    }
+
+    .segment-button {
+        background-color: color($colors, light)!important;
+        color: color($colors, primary)!important;
+    }
+    .segment-button.segment-activated {
+        background-color: color($colors, primary)!important;
+        color: color($colors, light)!important;
+    }
+
+    .general-settings-buttons{
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 15px;
+    }
+
+    .no-padding .scroll-content{
+        padding: 0!important;
+    }
+
+    ion-input input{
+        text-align: right;
+    }
+
+    .item-wrap{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-radius: 15px;
+		padding: 8px 8px;
+		background-color: white;
+		color: color($colors, primary);
+		font-size: 16px;
+		margin-bottom: 4px;
+        font-weight: 500;
+        margin-bottom: 5px;
+	};
+	.item-value{
+		font-weight: bold;
+	};
+
+    .formInput{
+        padding-right: 10px;
+    }
+
+    .fertilizerInput{
+        padding-right: 7px;
+    }
+
+}

@@ -1,0 +1,101 @@
+<form [formGroup]="info" (ngSubmit)="onFormSubmit()">
+    <div class="form-container">
+        <ion-item [ngClass]="{'valid-item': info.get('seedControlPeriod').valid}" tooltip="{{'tooltip.seed-control-period' | translate}}" positionV="bottom" arrow="true" mobileEvent="press">
+            <ion-label>
+                {{'settings.general.seed-control-period' | translate}}
+            </ion-label>               
+            <ion-select formControlName="seedControlPeriod" class="period-select">
+                <ion-option value="0.25">0,25s</ion-option>
+                <ion-option value="0.5">0,50s</ion-option>
+                <ion-option value="0.75">0,75s</ion-option>
+                <ion-option value="1">1,00s</ion-option>
+                <ion-option value="1.5">1,50s</ion-option>
+                <ion-option value="2">2,00s</ion-option>
+            </ion-select>
+        </ion-item>
+        <div *ngIf="info.get('seedControlPeriod').errors && info.get('seedControlPeriod').touched" class="text-error">
+            {{'validations.required' | translate}}
+        </div>
+
+        <ion-item id="discHoleNumberItem" tooltip="{{'tooltip.disc-hole-number' | translate}}" positionV="bottom" arrow="true"mobileEvent="click">
+            <ion-label >{{'settings.general.disc-hole-number' | translate}}</ion-label>
+            <ion-input  (ionFocus)="clickOnFocus('discHoleNumberItem')" formControlName="discHoleNumber" class="text-right"  type="number"  >
+            </ion-input>                    
+        </ion-item>
+      
+      <div *ngIf="info.get('discHoleNumber').errors && info.get('discHoleNumber').touched" class="text-error">
+              {{'validations.disc-hole-number' | translate}}
+      </div>
+
+
+        <!-- test --> 
+        <ion-item id="distanceBetweenSeedsItem" tooltip="{{'tooltip.distance-between-seeds' | translate}}" positionV="bottom" arrow="true"mobileEvent="click">
+            <ion-label >{{'settings.general.distance-between-seeds' | translate}}</ion-label>
+            <ion-input #distanceBetweenSeedsInput (ionFocus)="clickOnFocus('distanceBetweenSeedsItem')" formControlName="distanceBetweenSeeds" class="formInput" type="number"></ion-input>
+            <ion-label class="unit">cm</ion-label>  
+        </ion-item>
+
+  
+                
+        <div *ngIf="info.get('distanceBetweenSeeds').errors && (info.get('distanceBetweenSeeds').touched || info.get('distanceBetweenSeeds').dirty )" class="text-error">
+            {{'validations.distance-between-seeds' | translate}}
+        </div>
+        
+        <ion-item id="numberOfUnitItem" tooltip="{{'tooltip.number-of-unit' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.number-of-unit' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('numberOfUnitItem')"  formControlName="numberOfUnit" style="text-align: end;" type="tel" slot="end"></ion-input>
+        </ion-item>
+        <div *ngIf="info.get('numberOfUnit').errors && (info.get('numberOfUnit').touched || info.get('numberOfUnit').dirty )" class="text-error">
+            {{'validations.number-of-unit' | translate}}
+        </div>
+  
+        <ion-item id="distanceBetweenUnitItem" tooltip="{{'tooltip.distance-between-units' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.distance-between-units' | translate}}</ion-label>
+            <ion-input #distanceBetweenUnitInput (ionFocus)="clickOnFocus('distanceBetweenUnitItem')" formControlName="distanceBetweenUnit"  type="number" class="formInput text-right"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">cm</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('distanceBetweenUnit').errors && (info.get('distanceBetweenUnit').touched || info.get('distanceBetweenUnit').dirty )" class="text-error">
+            {{'validations.distance-between-units' | translate}}
+        </div>
+  
+        
+        <ion-item id="fertilizerWeightItem" tooltip="{{'tooltip.target-fertilizer-weight' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.target-fertilizer-weight' | translate}}</ion-label>
+            <ion-input #fertilizerWeightInput (ionFocus)="clickOnFocus('fertilizerWeightItem')" formControlName="fertilizerWeight"  type="number" slot="end" class="fertilizerInput text-right"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">Kg</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('fertilizerWeight').errors && (info.get('fertilizerWeight').touched || info.get('fertilizerWeight').dirty )" class="text-error">
+            {{'validations.target-fertilizer-weight' | translate}}
+        </div>
+  
+  
+        <ion-item id="toleranceItem" tooltip="{{'tooltip.tolerance' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.tolerance' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('toleranceItem')"  formControlName="tolerance" class="toleranceInput text-right" type="number" slot="end"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">%</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('tolerance').errors && (info.get('tolerance').touched || info.get('tolerance').dirty )" class="text-error">
+            {{'validations.tolerance' | translate}}
+        </div>
+  
+  
+        <ion-item id="whellDiameterItem" tooltip="{{'tooltip.wheel-diameter' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.wheel-diameter' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('whellDiameterItem')"  formControlName="wheelDiameter" class="formInput text-right" type="number" slot="end"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">cm</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('wheelDiameter').errors && (info.get('wheelDiameter').touched || info.get('wheelDiameter').dirty )" class="text-error">
+            {{'validations.wheel-diameter' | translate}}
+        </div>
+  
+  
+        <ion-item id="numberOfSignalsItem" tooltip="{{'tooltip.number-of-signals' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.number-of-signals' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('numberOfSignalsItem')" formControlName="numberOfSignals" style="text-align: end;"    type="tel" slot="end"></ion-input>
+        </ion-item>
+        <div *ngIf="info.get('numberOfSignals').errors && (info.get('numberOfSignals').touched || info.get('numberOfSignals').dirty )" class="text-error">
+            {{'validations.number-of-signals' | translate}}
+        </div>
+    </div>
+     
+  </form>  

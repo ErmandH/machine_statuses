@@ -1,0 +1,8 @@
+{
+  "name": "machine_statuses",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "app_id": ""
+}

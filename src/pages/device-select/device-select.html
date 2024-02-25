@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar padding color="primary" style="padding-top: 0.5rem!important; padding-bottom: 0.5rem!important;">
+    <div *ngIf="isDeviceExist()" class="flex align-center" style="gap: 12px;">
+      <button  (click)="goBack()" ion-button color="light" style="border-radius: 99px; padding: 0 1.6rem 0 1.6rem;" round>
+        <ion-icon style="font-size: 24px;" slot="icon-only" name="arrow-back"></ion-icon>
+      </button> 
+      <ion-title>{{'select-device' | translate}}</ion-title>
+    </div>
+    <div *ngIf="!isDeviceExist()">
+      <ion-title>{{'select-device' | translate}}</ion-title>
+    </div>
+    <div>
+      <button  (click)="scanForDevices()" ion-button tyle="border-radius: 99px; padding: 0 1.6rem 0 1.6rem;" round>
+        Scan
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <p>{{resultText}}</p>
+    <h2 *ngIf="devices.length === 0">
+      {{'device-not-found' | translate}}
+    </h2>
+    <ion-list *ngIf="devices.length > 0">
+      <button class="item-button" ion-item *ngFor="let device of devices" (click)="selectDevice(device)">
+        <div class="item-container">
+          <p class="item-name"> {{ device.name }} </p>
+          <p class="item-id text-muted"><span class="id">id: </span> {{ device.id }} </p>
+        </div>
+      </button>  
+    </ion-list>
+
+</ion-content>

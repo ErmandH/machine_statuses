@@ -1,0 +1,11 @@
+settings-granular-motor {
+	.form-container{
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		height: 100%;
+	}
+	ion-item{
+		border-radius: 0.8rem;
+	}
+}

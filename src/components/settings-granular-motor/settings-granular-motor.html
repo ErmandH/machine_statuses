@@ -1,0 +1,6 @@
+<div class="form-container">
+    <ion-item *ngFor="let motor of settings.motors; let i = index">
+        <ion-label>{{'settings.granular-motor.motor' | translate}} {{i + 1}}({{'enable' | translate}}/{{'disable' | translate}})</ion-label>
+         <ion-toggle (ionChange)="onToggleChange($event, motor ,i)" color="royal" [checked]="motor.enabled"></ion-toggle>
+     </ion-item>
+</div>

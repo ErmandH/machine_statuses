@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>
+          <ion-row>
+              <ion-col col-1>
+                  <ion-buttons slot="start" start>
+                      <button ion-button icon-only color="light" shape="round" (click)="goBack($event);">
+                          <ion-icon name="arrow-back"  style="font-size: 2em;"></ion-icon>
+                        </button>
+                  </ion-buttons>
+              </ion-col>
+              <ion-col col-11>
+                  <div>
+                      <ion-segment mode="ios" value="{{segment}}">
+                          <ion-segment-button (click)="goToTabOne()" value="t1" color="light" shape="round">
+                              {{'setting-tabs.general' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button (click)="goToTabTwo()" value="t2" color="light" shape="round">
+                              {{'setting-tabs.general-fertilizer' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button (click)="goToTabThree()" value="t3" color="light" shape="round">
+                              {{'setting-tabs.row-enable-disable' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button (click)="goToTabFour()" value="t4" color="light" shape="round">
+                              {{'setting-tabs.granular-motor' | translate}}
+                          </ion-segment-button>
+                      </ion-segment>
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>

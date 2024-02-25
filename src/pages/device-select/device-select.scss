@@ -1,0 +1,33 @@
+page-device-select {
+	.main-container{
+		
+	}
+	.device-header{
+		font-size: 2rem;
+		color: white;
+		font-weight: 500;
+		background-color: color($colors, primary);
+		padding: 1.2rem;
+		border-radius: 0.7rem;
+	}
+	.item-container{
+		display: flex;
+		flex-direction: column;
+	}
+	.item-name{
+		color: black;
+		font-size: 1.8rem;
+	}
+	.item-id{
+		font-size: 1.2rem;
+	}
+	.item-button{
+		border-radius: 0.8rem;
+	}
+	.id{
+		font-weight: 500;
+	}
+	.toolbar-title{
+		padding-left: 0;
+	}
+}

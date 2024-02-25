@@ -1,0 +1,60 @@
+<form [formGroup]="info"  (ngSubmit)="onFormSubmit()">
+    <ion-row>
+        <ion-col col-6>
+            <div class="form-container">
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.fertilizer-start-torque' | translate}}</ion-label>
+                    <ion-input  formControlName="fertilizerStartTorque" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.fertilizer-calibration-rpm' | translate}}</ion-label>
+                    <ion-input formControlName="fertilizerCalibrationRPM" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.fertilizer-calibration-tour' | translate}}</ion-label>
+                    <ion-input formControlName="fertilizerCalibrationTour" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.multiplier' | translate}}</ion-label>
+                    <ion-input formControlName="multiplier" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.engine-signal-on-a-tour' | translate}}</ion-label>
+                    <ion-input formControlName="engineSignalOnATour" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.the-unit-of-seed-area-meause' | translate}}</ion-label>
+                    <ion-input formControlName="unitSeedOfArea" type="number" slot="end"></ion-input>
+                </ion-item>
+            </div>
+        </ion-col>
+        <ion-col col-6>
+            <div class="form-container">
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.distance-rpm' | translate}} 1</ion-label>
+                    <ion-input formControlName="distanceRPM1" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.engine-step' | translate}} 1</ion-label>
+                    <ion-input formControlName="engineStep1" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.distance-rpm' | translate}} 2</ion-label>
+                    <ion-input formControlName="distanceRPM2" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.engine-step' | translate}} 2</ion-label>
+                    <ion-input formControlName="engineStep2" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.distance-rpm' | translate}} 3</ion-label>
+                    <ion-input formControlName="distanceRPM3" type="number" slot="end"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{'settings.general-fertilizer.engine-step' | translate}} 3</ion-label>
+                    <ion-input formControlName="engineStep3" type="number" slot="end"></ion-input>
+                </ion-item>
+            </div>
+        </ion-col>
+      </ion-row>
+</form>

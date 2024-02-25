@@ -1,0 +1,408 @@
+<ion-grid>
+	<ion-row class="head-informations">
+		<ion-col col-2>
+			<button (click)="goToAreaInfo()" round ion-button color="light" shape="round">
+				<ion-icon slot="start" name="star"></ion-icon>
+				&nbsp;{{machineStatus.seedArea}} {{machineStatus.seedUnit}}
+			</button>
+		</ion-col>
+	   <ion-col col-2>
+		 <button (click)="goToWorkingStatistics()" round ion-button color="light" shape="round">
+			<ion-icon slot="start" class="fn-tractor"></ion-icon>
+				&nbsp;{{machineStatus.speed}} km/h
+		 </button>
+	   </ion-col>
+	   <ion-col col-2>
+		<button (click)="goToDistanceBetweenSeeds()" round ion-button color="light" shape="round">
+			<ion-icon slot="start" class="fn-leaf" style="color:#0bac0b;stroke:#000"></ion-icon>
+			&nbsp;{{ machineSettings.distanceBetweenSeeds }} cm
+		</button>
+	   </ion-col>
+	   <ion-col col-2>     
+		<button ion-button color="light" round shape="round">
+			<ion-icon slot="start" class="fn-leaf" style="color:#0bac0b;stroke:#000"></ion-icon>
+				  &nbsp;{{machineStatus.seedPerAreaAvg}} m2
+		</button>
+	   </ion-col>
+	   <ion-col col-2>
+		<button ion-button (click)="openSettings()" round color="light" shape="round">
+			Menu&nbsp;
+			<ion-icon name="menu" style="font-size: 2em;" slot="end"></ion-icon>
+		</button>
+	   </ion-col>
+	   <ion-col col-1>
+		<button ion-button (click)="logOut()" round color="light" shape="round">
+			<ion-icon name="log-out" style="font-size: 1.5em;"> </ion-icon>
+		</button>
+	   </ion-col>       
+	</ion-row>
+</ion-grid>
+
+
+<ion-row class="footer-informations">
+	<button ion-button color="light" round shape="round">
+		<ion-icon slot="start" class="fn-tractor"></ion-icon>
+		&nbsp;{{machineStatus.vacuum}} mbar
+	  </button>
+	<button round ion-button color="light" shape="round">
+		  <ion-icon slot="start" class="fn-ruler"></ion-icon>
+		  &nbsp;{{machineStatus.fertilizerPerUnit}} {{machineStatus.seedUnit}}/Kg
+		</button>
+	<img src="../../assets/imgs/logo.png">
+	<button ion-button (click)="openCloseSound()" round>
+		<ion-icon [name]="sound"  slot="start"></ion-icon>
+	  </button>
+	<button ion-button round>
+		  <ion-icon slot="start" name="pause"></ion-icon>
+		</button>
+	<button ion-button round>
+			<ion-icon slot="start" name="help-circle"></ion-icon>
+		  </button>
+		  <button ion-button round>
+				  <ion-icon slot="start" name="bluetooth" (click)="changeDevice()"></ion-icon>
+		</button>
+	<app-language-picker></app-language-picker>
+</ion-row>
+
+
+
+
+
+
+<form [formGroup]="info" (ngSubmit)="onFormSubmit()">
+    <div class="form-container">
+        <ion-item [ngClass]="{'valid-item': info.get('seedControlPeriod').valid}">
+            <ion-label>
+                {{'settings.general.seed-control-period' | translate}}
+            </ion-label>
+            <button>
+                <ion-icon name="information-circle"></ion-icon>
+            </button>                           
+            <ion-select formControlName="seedControlPeriod" class="period-select">
+                <ion-option value="0.25">0,25s</ion-option>
+                <ion-option value="0.5">0,50s</ion-option>
+                <ion-option value="0.75">0,75s</ion-option>
+                <ion-option value="1">1,00s</ion-option>
+                <ion-option value="1.5">1,50s</ion-option>
+                <ion-option value="2">2,00s</ion-option>
+            </ion-select>
+        </ion-item>
+        <div *ngIf="info.get('seedControlPeriod').errors && info.get('seedControlPeriod').touched" class="text-error">
+            {{'validations.required' | translate}}
+        </div>
+
+        <ion-item id="discHoleNumberItem" tooltip="{{'tooltip.disc-hole-number' | translate}}" positionV="bottom" arrow="true"mobileEvent="click">
+            <ion-label >{{'settings.general.disc-hole-number' | translate}}</ion-label>
+            <ion-input  (ionFocus)="clickOnFocus('discHoleNumberItem')" formControlName="discHoleNumber" class="text-right"  type="number"  >
+            </ion-input>                    
+        </ion-item>
+      
+      <div *ngIf="info.get('discHoleNumber').errors && info.get('discHoleNumber').touched" class="text-error">
+              {{'validations.disc-hole-number' | translate}}
+      </div>
+
+
+        <ion-item id="distanceBetweenSeedsItem" tooltip="{{'tooltip.distance-between-seeds' | translate}}" positionV="bottom" arrow="true"mobileEvent="click">
+            <ion-label >{{'settings.general.distance-between-seeds' | translate}}</ion-label>
+            <ion-input #distanceBetweenSeedsInput (ionFocus)="clickOnFocus('distanceBetweenSeedsItem')" formControlName="distanceBetweenSeeds" class="formInput" type="number"></ion-input>
+            <ion-label class="unit">cm</ion-label>  
+        </ion-item>
+  
+                
+        <div *ngIf="info.get('distanceBetweenSeeds').errors && (info.get('distanceBetweenSeeds').touched || info.get('distanceBetweenSeeds').dirty )" class="text-error">
+            {{'validations.distance-between-seeds' | translate}}
+        </div>
+        
+        <ion-item id="numberOfUnitItem" tooltip="{{'tooltip.number-of-unit' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.number-of-unit' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('numberOfUnitItem')"  formControlName="numberOfUnit" style="text-align: end;" type="tel" slot="end"></ion-input>
+        </ion-item>
+        <div *ngIf="info.get('numberOfUnit').errors && (info.get('numberOfUnit').touched || info.get('numberOfUnit').dirty )" class="text-error">
+            {{'validations.number-of-unit' | translate}}
+        </div>
+  
+        <ion-item id="distanceBetweenUnitItem" tooltip="{{'tooltip.distance-between-units' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.distance-between-units' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('distanceBetweenUnitItem')" formControlName="distanceBetweenUnit"  type="number" class="formInput text-right"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">cm</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('distanceBetweenUnit').errors && (info.get('distanceBetweenUnit').touched || info.get('distanceBetweenUnit').dirty )" class="text-error">
+            {{'validations.distance-between-units' | translate}}
+        </div>
+  
+        
+        <ion-item id="fertilizerWeightItem" tooltip="{{'tooltip.target-fertilizer-weight' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.target-fertilizer-weight' | translate}}</ion-label>
+            <ion-input #fertilizerWeightInput (ionFocus)="clickOnFocus('fertilizerWeightItem')" formControlName="fertilizerWeight"  type="number" slot="end" class="fertilizerInput text-right"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">Kg</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('fertilizerWeight').errors && (info.get('fertilizerWeight').touched || info.get('fertilizerWeight').dirty )" class="text-error">
+            {{'validations.target-fertilizer-weight' | translate}}
+        </div>
+  
+  
+        <ion-item id="toleranceItem" tooltip="{{'tooltip.tolerance' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.tolerance' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('toleranceItem')"  formControlName="tolerance" class="toleranceInput text-right" type="number" slot="end"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">%</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('tolerance').errors && (info.get('tolerance').touched || info.get('tolerance').dirty )" class="text-error">
+            {{'validations.tolerance' | translate}}
+        </div>
+  
+  
+        <ion-item id="whellDiameterItem" tooltip="{{'tooltip.wheel-diameter' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.wheel-diameter' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('whellDiameterItem')"  formControlName="wheelDiameter" class="formInput text-right" type="number" slot="end"></ion-input>
+            <ion-label position="floating" class="unit" slot="end">cm</ion-label>
+        </ion-item>
+        <div *ngIf="info.get('wheelDiameter').errors && (info.get('wheelDiameter').touched || info.get('wheelDiameter').dirty )" class="text-error">
+            {{'validations.wheel-diameter' | translate}}
+        </div>
+  
+  
+        <ion-item id="numberOfSignalsItem" tooltip="{{'tooltip.number-of-signals' | translate}}" positionV="bottom" arrow="true" mobileEvent="click">
+            <ion-label>{{'settings.general.number-of-signals' | translate}}</ion-label>
+            <ion-input (ionFocus)="clickOnFocus('numberOfSignalsItem')" formControlName="numberOfSignals" style="text-align: end;"    type="tel" slot="end"></ion-input>
+        </ion-item>
+        <div *ngIf="info.get('numberOfSignals').errors && (info.get('numberOfSignals').touched || info.get('numberOfSignals').dirty )" class="text-error">
+            {{'validations.number-of-signals' | translate}}
+        </div>
+    </div>
+     
+  </form>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <ion-content padding id="settings">
+    <ion-grid>
+        <div *ngIf="i_tab === 't1'">      
+                <ion-row>
+                    <ion-col col-8>
+                        <settings-general 
+                            [focusDistanceBetweenSeeds]="focusDistanceBetweenSeeds"
+                            [focusFertilizerWeight]="focusFertilizerWeight"
+                            [machineSettings]="machineSettings"
+                            >
+                        </settings-general>
+                    </ion-col>
+                    <ion-col slot="fixed" style="position: relative;" col-4 class="general-settings-col">
+                        <div class="general-settings-buttons">
+                            <button slot="fixed" ion-button (click)="openSeedCalibrationModal()" color="light" round>
+                                <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.seed-calibration' | translate}}
+                              </button>
+                            <button slot="fixed" ion-button (click)="openCalibrationModal()" color="light" round>
+                                <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                              </button>
+                        </div>
+                    </ion-col>                   
+                </ion-row>
+                   
+        </div>
+        <div *ngIf="i_tab === 't2'">
+            <settings-general-fertilizer
+                [machineSettings]="machineSettings"
+            >
+            </settings-general-fertilizer>
+        </div>
+        <div *ngIf="i_tab === 't3'">
+            <ion-row>
+                <ion-col col-9>
+                    <settings-row-enable
+                        [machinesettings]="machineSettings"
+                        [machinestatus]="machineStatus"
+                    >
+                    </settings-row-enable>
+                </ion-col>         
+                <ion-col col-3>
+                    <div class="general-settings-buttons">
+                        <button ion-button (click)="openSeedCalibrationModal()" color="primary" round>
+                            <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.seed-calibration' | translate}}
+                          </button>
+                        <button ion-button (click)="openCalibrationModal()" color="primary" round>
+                            <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                          </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf="i_tab === 't4'">
+            <ion-row>
+                <ion-col col-9>
+                    <settings-granular-motor
+                        [machinesettings]="machineSettings"
+                    ></settings-granular-motor>
+                </ion-col>
+                <ion-col col-3>
+                    <div class="general-settings-buttons">
+                        <button ion-button (click)="openSeedCalibrationModal()" color="primary" round>
+                            <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.seed-calibration' | translate}}
+                          </button>
+                        <button ion-button (click)="openCalibrationModal()" color="primary" round>
+                            <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                          </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-grid>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <ion-row>
+                <ion-col col-1>
+                    <ion-buttons slot="start" start>
+                        <button ion-button icon-only color="light" shape="round" (click)="goBack($event);">
+                            <ion-icon name="arrow-back"  style="font-size: 2em;"></ion-icon>
+                          </button>
+                    </ion-buttons>
+                </ion-col>
+                <ion-col col-11>
+                    <div>
+                        <ion-segment mode="ios" value="t1" (ionChange)="segmentChanged($event)">
+                            <ion-segment-button value="t1" color="light" shape="round">
+                                {{'setting-tabs.general' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button value="t2" color="light" shape="round">
+                                {{'setting-tabs.general-fertilizer' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button value="t3" color="light" shape="round">
+                                {{'setting-tabs.row-enable-disable' | translate}}
+                            </ion-segment-button>
+                            <ion-segment-button value="t4" color="light" shape="round">
+                                {{'setting-tabs.granular-motor' | translate}}
+                            </ion-segment-button>
+                        </ion-segment>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding id="settings">
+    <ion-grid style="height: 100%!important;">
+        <ng-container *ngIf="i_tab === 't1'">      
+                <ion-row class="full-height">
+                    <ion-col col-8 class="full-height">
+                        <ion-content class="bg-app-primary no-padding">
+                            <settings-general 
+                            [focusDistanceBetweenSeeds]="focusDistanceBetweenSeeds"
+                            [focusFertilizerWeight]="focusFertilizerWeight"
+                            [machineSettings]="machineSettings"
+                            >
+                        </settings-general>
+                        </ion-content>
+                        
+                    </ion-col>
+                    <ion-col slot="fixed" style="position: relative;" col-4 class="general-settings-col">
+                        <div class="general-settings-buttons">
+                            <button slot="fixed" ion-button (click)="openSeedCalibrationModal()" color="light" round>
+                                <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.seed-calibration' | translate}}
+                              </button>
+                            <button slot="fixed" ion-button (click)="openCalibrationModal()" color="light" round>
+                                <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                                &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                              </button>
+                        </div>
+                    </ion-col>                   
+                </ion-row>
+                   
+        </ng-container>
+        <div *ngIf="i_tab === 't2'">
+            <settings-general-fertilizer
+                [machineSettings]="machineSettings"
+            >
+            </settings-general-fertilizer>
+        </div>
+        <div *ngIf="i_tab === 't3'">
+            <ion-row>
+                <ion-col col-9>
+                    <settings-row-enable
+                        [machinesettings]="machineSettings"
+                        [machinestatus]="machineStatus"
+                    >
+                    </settings-row-enable>
+                </ion-col>         
+                <ion-col col-3>
+                    <div class="general-settings-buttons">
+                        <button ion-button (click)="openSeedCalibrationModal()" color="primary" round>
+                            <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.seed-calibration' | translate}}
+                          </button>
+                        <button ion-button (click)="openCalibrationModal()" color="primary" round>
+                            <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                          </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf="i_tab === 't4'">
+            <ion-row>
+                <ion-col col-9>
+                    <settings-granular-motor
+                        [machinesettings]="machineSettings"
+                    ></settings-granular-motor>
+                </ion-col>
+                <ion-col col-3>
+                    <div class="general-settings-buttons">
+                        <button ion-button (click)="openSeedCalibrationModal()" color="primary" round>
+                            <ion-icon name="leaf" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.seed-calibration' | translate}}
+                          </button>
+                        <button ion-button (click)="openCalibrationModal()" color="primary" round>
+                            <ion-icon name="logo-dropbox" style="font-size: 2em;" slot="start"></ion-icon>
+                            &nbsp;{{'settings.general.fertilizer-calibration' | translate}}
+                          </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-grid>
+</ion-content>
+
+<ng-container>
+    <ion-footer *ngIf="i_tab === 't1'">
+        <div class="flex justify-center align-center" style="padding: 0.8rem;">
+            <button (click)="submitGeneralSettings()" [disabled]="isButtonDisabled" ion-button round color="light" type="submit">
+                {{'settings.general.save' | translate}}
+            </button>
+        </div>
+    </ion-footer> 
+</ng-container>

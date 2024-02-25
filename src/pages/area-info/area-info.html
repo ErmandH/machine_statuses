@@ -1,0 +1,84 @@
+<!--
+  Generated template for the AreaInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar padding color="primary" style="padding-top: 0.5rem!important; padding-bottom: 0.5rem!important;">
+    <button (click)="goBack()" ion-button color="light" style="border-radius: 99px; padding: 0 1.6rem 0 1.6rem;" round>
+      <ion-icon style="font-size: 24px;" slot="icon-only" name="arrow-back"></ion-icon>
+    </button> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-blue" id="area-content" padding>
+  <div id="part1">
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.total-calculated-area' | translate}}:
+      </span>
+      <span class="item-value">
+        {{ machineStatus.totalCalculatedArea }}
+      </span>
+    </div>
+    <div class="item">
+      <span class="item-label">
+        Pcs/{{'hectare' | translate}}:
+      </span>
+      <span class="item-value">
+        82000
+      </span>
+    </div>
+  </div>
+  <div id="part2">
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.partial-area' | translate}} 1:
+      </span>
+      <span class="item-value">
+        {{ machineStatus.partial1 }} {{'hectare' | translate}}
+      </span>
+    </div>
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.partial-area' | translate}} 2:
+      </span>
+      <span class="item-value">
+        {{ machineStatus.partial2 }} {{'hectare' | translate}}
+      </span>
+    </div>
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.partial-area' | translate}} 3: 
+      </span>
+      <span class="item-value">
+        {{ machineStatus.partial3 }} {{'hectare' | translate}}
+      </span>
+    </div>
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.partial-area' | translate}} 4:
+      </span>
+      <span class="item-value">
+        {{ machineStatus.partial4 }} {{'hectare' | translate}}
+      </span>
+    </div>
+    <div class="item">
+      <span class="item-label">
+        {{'area-info.partial-area' | translate}} 5:
+      </span>
+      <span class="item-value">
+        {{ machineStatus.partial5 }} {{'hectare' | translate}}
+      </span>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="bg-blue area-footer">
+  <button (click)="showAlert()" icon-start ion-button outline round color="light">
+    <ion-icon name="cog"></ion-icon>
+    {{'area-info.area-reset-button' | translate}}
+  </button>
+  <button (click)="goBack()" ion-button outline round color="light">{{'area-info.ok' | translate}}</button>
+</ion-footer>

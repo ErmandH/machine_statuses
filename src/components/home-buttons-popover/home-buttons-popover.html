@@ -1,0 +1,14 @@
+<div class="flex flex-column justify-center align-center">
+  <button ion-button (click)="openCloseSound()" round color="light">
+    <ion-icon [name]="sound"  slot="start"></ion-icon>
+  </button>
+  <button ion-button round color="light">
+      <ion-icon slot="start" name="help-circle"></ion-icon>
+  </button>
+  <button class="sm-button" ion-button round color="light">
+    <ion-icon slot="start" name="pause"></ion-icon>
+  </button>
+  <div class="md-button">
+    <app-language-picker></app-language-picker>
+  </div>
+</div>

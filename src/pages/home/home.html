@@ -1,0 +1,89 @@
+<ion-header>
+    <div class="header-container">
+        <button (click)="goToAreaInfo()" round ion-button color="light" shape="round">
+            <ion-icon slot="start" name="star"></ion-icon>
+            &nbsp;{{machineStatus.seedArea}} {{machineStatus.seedUnit}}
+        </button>
+            <button (click)="goToWorkingStatistics()" round ion-button color="light" shape="round">
+                  <ion-icon slot="start" class="fn-tractor"></ion-icon>
+                  &nbsp;{{machineStatus.speed}} km/h
+                </button>
+            <button (click)="goToDistanceBetweenSeeds()" round ion-button color="light" shape="round">
+                    <ion-icon slot="start" class="fn-leaf" style="color:#0bac0b;stroke:#000"></ion-icon>
+                    &nbsp;{{ machineSettings.distanceBetweenSeeds }} cm
+                  </button>
+            <button ion-button color="light" round shape="round">
+                      <ion-icon slot="start" class="fn-leaf" style="color:#0bac0b;stroke:#000"></ion-icon>
+                      &nbsp;{{machineStatus.seedPerAreaAvg}} m2
+                    </button>
+            <button ion-button (click)="openSettings()" round color="light" shape="round">
+                <ion-icon name="cog"></ion-icon>
+            </button>
+            <button ion-button (click)="logOut()" round color="light" shape="round">
+                <ion-icon name="log-out" style="font-size: 1.5em;"> </ion-icon>
+            </button>
+    </div>
+</ion-header>
+
+<ion-content id="home">
+    <ion-grid>
+        <ion-row>
+            <ng-container *ngFor="let item of machineStatus.machines; let i = index">
+                <ion-col class="flex" col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2>      
+                        <ion-card (click)="goToRowEnableDisable()" class="machine-cards">
+                            <ion-card-header class="machine-header">
+                                <ion-card-subtitle float-right>{{item.no}}</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+                                <ion-icon *ngIf="item.show" [style.background-color]="item.statusColor" class="fn-grain-drill" [style.color]="item.statusColor"></ion-icon>
+                                <ion-icon *ngIf="!item.show" class="fn-error-grain-drill" [style.color]="'#eb3232'"  ></ion-icon>
+                            </ion-card-content>
+                            <ion-card-content (click)="goToDistanceBetweenSeeds();$event.stopPropagation()" class="machine-distance"><span>{{machineSettings.distanceBetweenSeeds}} {{item.unit}}</span></ion-card-content>
+                        </ion-card>
+                        <div (click)="goToDistanceBetweenUnits()" class="distance" *ngIf="i !== machineStatus.machines.length - 1">
+                            <p>{{machineSettings.distanceBetweenUnits}} cm</p>
+                            <ion-icon name="code-working"></ion-icon>
+                        </div>     
+                        <div (click)="goToDistanceBetweenUnits()" style="visibility: hidden;" class="distance" *ngIf="i === machineStatus.machines.length - 1 ">
+                            <p>{{machineSettings.distanceBetweenUnits}} cm</p>
+                            <ion-icon name="code-working"></ion-icon>
+                        </div>      
+                </ion-col>
+            </ng-container>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<ion-footer class="bg-blue" style="display: flex;justify-content: center;">
+    <div class="header-container">
+        <button ion-button color="light" round shape="round">
+            <ion-icon slot="start" class="fn-tractor"></ion-icon>
+            &nbsp;{{machineStatus.vacuum}} mbar
+          </button>
+        <button round ion-button color="light" shape="round">
+              <ion-icon slot="start" class="fn-ruler"></ion-icon>
+              &nbsp;{{machineStatus.fertilizerPerUnit}} {{machineStatus.seedUnit}}/Kg
+            </button>
+        <div class="app-logo-container">
+            <img class="app-logo" src="../../assets/imgs/logo.png">
+        </div> 
+        <button class="xs-toggle-button" ion-button round color="light">
+            <ion-icon slot="start" name="bluetooth" (click)="changeDevice()"></ion-icon>
+        </button> 
+        <button class="sm-toggle-button" ion-button round color="light">
+              <ion-icon slot="start" name="pause"></ion-icon>
+        </button>
+        <div class="md-toggle-button">
+            <app-language-picker></app-language-picker>
+        </div>
+        <button class="lg-toggle-button" ion-button (click)="openCloseSound()" round color="light">
+            <ion-icon [name]="sound"  slot="start"></ion-icon>
+          </button>
+        <button class="lg-toggle-button" ion-button round color="light">
+            <ion-icon slot="start" name="help-circle"></ion-icon>
+        </button>
+        <button class="popover-button" ion-button round color="light" (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+        </button>
+    </div>
+</ion-footer>

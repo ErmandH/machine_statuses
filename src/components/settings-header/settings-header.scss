@@ -1,0 +1,10 @@
+settings-header {
+	.segment-button {
+        background-color: color($colors, light)!important;
+        color: color($colors, primary)!important;
+    }
+    .segment-button.segment-activated {
+        background-color: color($colors, primary)!important;
+        color: color($colors, light)!important;
+    }
+}

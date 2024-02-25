@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>
+          <ion-row>
+              <ion-col col-1>
+                  <ion-buttons slot="start" start>
+                      <button ion-button icon-only color="light" shape="round" (click)="goBack($event);">
+                          <ion-icon name="arrow-back"  style="font-size: 2em;"></ion-icon>
+                        </button>
+                  </ion-buttons>
+              </ion-col>
+              <ion-col col-11>
+                  <div>
+                      <ion-segment mode="ios" value="t2">
+                          <ion-segment-button (click)="goToTabOne()" value="t1" color="light" shape="round">
+                              {{'setting-tabs.general' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button id="selectedSegment" (click)="goToTabTwo()" value="t2" color="light" shape="round">
+                              {{'setting-tabs.general-fertilizer' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button (click)="goToTabThree()" value="t3" color="light" shape="round">
+                              {{'setting-tabs.row-enable-disable' | translate}}
+                          </ion-segment-button>
+                          <ion-segment-button (click)="goToTabFour()" value="t4" color="light" shape="round">
+                              {{'setting-tabs.granular-motor' | translate}}
+                          </ion-segment-button>
+                      </ion-segment>
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding id="settings">
+        <ion-grid style="height: 100%!important;"> 
+          <settings-general-fertilizer
+      >
+      </settings-general-fertilizer>
+        </ion-grid>
+</ion-content>
+
+
+
+
+<ion-footer>
+  <div class="flex justify-center align-center" style="padding: 0.8rem;">
+    <button (click)="showAlert()" icon-start ion-button round color="light">
+        <ion-icon name="cog"></ion-icon>
+        {{'settings.general-fertilizer.restore-default-settings' | translate}}
+      </button>
+    <button (click)="submitFertilizerSettings()" [disabled]="isFertilizerSaveButtonDisabled" ion-button round color="light" type="submit">
+            {{'settings.general.save' | translate}}
+    </button>
+</div>
+</ion-footer> 

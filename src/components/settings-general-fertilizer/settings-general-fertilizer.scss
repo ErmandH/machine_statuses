@@ -1,0 +1,12 @@
+settings-general-fertilizer {
+	.form-container{
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		height: 100%;
+	}
+	ion-item{
+		padding: 0.8rem!important;
+		border-radius: 0.8rem;
+	}
+}

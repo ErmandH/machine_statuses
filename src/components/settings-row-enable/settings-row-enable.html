@@ -1,0 +1,6 @@
+<div class="form-container">
+     <ion-item *ngFor="let machine of machinestatus.machines; let i = index">
+         <ion-label>{{i + 1}}. {{'settings.row-enable-disable.row-control' | translate}}({{'enable' | translate}}/{{'disable' |translate}})</ion-label>
+          <ion-toggle (ionChange)="onToggleChange($event, machine, i)" color="royal" [checked]="machine.show"></ion-toggle>
+      </ion-item>
+</div>

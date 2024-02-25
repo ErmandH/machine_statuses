@@ -1,0 +1,81 @@
+<ion-content padding id="login">
+    <ion-grid>
+        <ion-row>
+            <ion-col center text-center>
+                <img src="assets/imgs/logo.png" class="logo"/>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <h1 class="text-center">Electronic Monitoring & Control Devices</h1>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+        <ion-row class="login-input">
+            <ion-col class="flex justify-center">
+                <div class="input-container">
+                    <input
+                      type="email"
+                      id="mail"
+                      name="mail"
+                      value=""
+                      aria-labelledby="label-mail"
+                    />
+                    <label class="label" for="mail" id="label-mail">
+                      <div class="text">
+                        {{'login.e-mail' | translate}}
+                      </div>
+                    </label>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="login-input">
+            <ion-col class="flex justify-center">
+                <div class="input-container">
+                    <input
+                      type="password"
+                      id="pass"
+                      name="pass"
+                      value=""
+                      aria-labelledby="label-pass"
+                    />
+                    <label class="label" for="pass" id="label-pass">
+                      <div class="text">{{'login.password' | translate}}</div>
+                    </label>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col center text-center>
+                    <button class="forgot-button" round ion-button color="light" clear>
+                        {{'login.forgot-password' | translate}}
+                    </button> 
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col center text-center>
+                <button round ion-button color="light" class="login-button" (click)="goHome()">
+                    {{'login.sign-in' | translate}}
+                </button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col center text-center>
+                <span style="color: white;font-weight: 600;">
+                    {{'login.or' | translate}}
+                </span>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col center text-center>
+                <button round ion-button color="darkblue" class="login-button" (click)="goHome()">
+                    {{'login.sign-up' | translate}}
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

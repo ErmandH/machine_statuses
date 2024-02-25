@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar padding color="primary" style="padding-top: 0.5rem!important; padding-bottom: 0.5rem!important;">
+    <button (click)="goBack()" ion-button color="light" style="border-radius: 99px; padding: 0 1.6rem 0 1.6rem;" round>
+      <ion-icon style="font-size: 24px;" slot="icon-only" name="arrow-back" ></ion-icon>
+    </button> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-blue" id="area-content" padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <h4 style="color: #CB9F40;">{{'seed-calibration-page.wheel-tour-count' | translate}}:</h4>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 1:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 2:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 3:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 4:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 5:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.row' | translate}} 6:
+          </span>
+          <span class="item-value">
+            0
+          </span>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <h4 style="color: #CB9F40;">{{'seed-calibration-page.dust-ratio' | translate}}:</h4>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.dust' | translate}}
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            %80
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.light' | translate}}
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            %00
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            {{'seed-calibration-page.error' | translate}}
+          </span>
+        </div>
+        <div class="item">
+          <span class="item-label">
+            %10
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="bg-blue area-footer">
+  <button (click)="showAlert()" icon-start ion-button outline round color="light">
+    <ion-icon name="cog"></ion-icon>
+    {{'seed-calibration-page.row-reset-button' | translate}}
+  </button>
+  <button (click)="goBack()" ion-button outline round color="light">
+    {{'seed-calibration-page.ok' | translate}}
+  </button>
+</ion-footer>
